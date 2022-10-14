@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR_WIN
+using UnityEditor;
 
 [CustomEditor(typeof(ProgressBar))]
 public class ProgressBarEditor : Editor
@@ -22,3 +23,4 @@ public class ProgressBarEditor : Editor
 
     
 }
+#endif
