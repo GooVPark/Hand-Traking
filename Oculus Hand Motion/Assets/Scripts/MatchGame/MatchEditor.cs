@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR_WIN
 using UnityEditor;
-using UnityEditor.TerrainTools;
 
 [CustomEditor(typeof(MatchNumber))]
 public class MatchEditor : Editor
@@ -45,3 +45,5 @@ public class MatchEditor : Editor
             EditorGUI.DrawRect(rect, Color.white);
     }
 }
+
+#endif
