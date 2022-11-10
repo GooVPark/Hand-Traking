@@ -82,9 +82,13 @@ public class MemoryGameManager : MonoBehaviour
 
     float timer;
     float timerReset;
-    int maxGameLevel;
-    int maxCount;
 
+    int numGameLevel;
+    int numMaxCount;
+
+    int stageCount;
+
+    [Header("Enum")]
     [SerializeField]
     State state;
     [SerializeField]
@@ -105,8 +109,8 @@ public class MemoryGameManager : MonoBehaviour
 
         exampleStack = new Stack<int>();
         playerStack = new Stack<int>();
-        maxGameLevel = 4;
-        maxCount = exampleCount;
+        numGameLevel = 4;
+        numMaxCount = exampleCount;
         timer = timerReset = 1f;
 
         state = State.PlayExample;
@@ -248,8 +252,6 @@ public class MemoryGameManager : MonoBehaviour
                         ChangeState(state, Phase.Start);
                         break;
                     case Phase.Start:
-                       
-
                         eventCanvas.StartGame();
                         ChangeState(state, Phase.End);
                         break;
@@ -306,7 +308,7 @@ public class MemoryGameManager : MonoBehaviour
     }
     public int ConvertArrayIndex(int i, int j)
     {
-        return (i * maxGameLevel) + (j % maxGameLevel);
+        return (i * numGameLevel) + (j % numGameLevel);
     }
     void SetLevel(Type type)
     {
@@ -328,10 +330,10 @@ public class MemoryGameManager : MonoBehaviour
             case Type.Number:
 
                 int index = 1;
-                for (int i = 0; i < maxGameLevel; i++)
+                for (int i = 0; i < numGameLevel; i++)
                 {
                     if (i >= gameLevel) continue;
-                    for (int j = 0; j < maxGameLevel; j++)
+                    for (int j = 0; j < numGameLevel; j++)
                     {
                         if (j < gameLevel)
                         {
@@ -506,10 +508,10 @@ public class MemoryGameManager : MonoBehaviour
 
             timer = timerReset;
 
-            if(exampleStack.Count != maxCount)
-                txtHistory.text = $"<color=red>{exampleStack.Count}</color> / {maxCount}";
+            if(exampleStack.Count != numMaxCount)
+                txtHistory.text = $"<color=red>{exampleStack.Count}</color> / {numMaxCount}";
             else
-                txtHistory.text = $"<color=green>{exampleStack.Count}</color> / {maxCount}";
+                txtHistory.text = $"<color=green>{exampleStack.Count}</color> / {numMaxCount}";
 
             yield return wfs;
         }
