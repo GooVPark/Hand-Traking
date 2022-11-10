@@ -107,7 +107,7 @@ public class RSPGameManager : MonoBehaviour
                 timer -= Time.deltaTime;
                 progressBar.gameObject.SetActive(true);
                 progressBar.Set(timer, timerReset);
-                foreach (var item in poseList)
+                foreach (Pose item in poseList)
                 {
                     if (item.select)
                         playerRSP = item.rsp;
